@@ -1,0 +1,140 @@
+﻿@page
+@model TheMilesTours.Areas.Admin.Pages.Tour.Plan.AddModel
+@{
+}
+<div class="page-content">
+    <div class="page-bar">
+        <div class="page-title-breadcrumb">
+            <div class=" pull-left">
+                <div class="page-title">Add Tour Plan</div>
+            </div>
+            <ol class="breadcrumb page-breadcrumb pull-right">
+                <li>
+                    <i class="fa fa-home"></i>&nbsp;
+                    <a class="parent-item" asp-area="CRM" asp-controller="Dashboard" asp-action="index">Home</a>
+                    &nbsp;<i class="fa fa-angle-right"></i>
+                </li>
+                <li class="active">Add Tour Plan</li>
+            </ol>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="card-box">
+                <form method="post">
+                    <input type="hidden" asp-for="TourId" />
+
+                    <div class="card-body row" id="tour-plan-container">
+                        <div class="days-container">
+                            <!-- Initial Day - will be rendered with proper model binding -->
+                            @for (int i = 0; i < Model.TourPlans.Count; i++)
+                            {
+                                <div class="day-fields" data-day="@(i + 1)">
+                                    <h4>Day @(i + 1) @if (i > 0)
+                                        {
+                                            <button type="button" class="remove-day btn btn-sm btn-danger" style="float:right;">Remove</button>
+                                        }</h4>
+                                    <div class="col-lg-12 p-t-20">
+                                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
+                                            <input class="mdl-textfield__input" asp-for="TourPlans[i].Title" type="text" />
+                                            <label class="mdl-textfield__label">Title</label>
+                                            <span asp-validation-for="TourPlans[i].Title" class="text-danger"></span>
+                                        </div>
+                                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
+                                            <input class="mdl-textfield__input" asp-for="TourPlans[i].Description" type="text" />
+                                            <label class="mdl-textfield__label">Description</label>
+                                            <span asp-validation-for="TourPlans[i].Description" class="text-danger"></span>
+                                        </div>
+                                        <input type="hidden" asp-for="TourPlans[i].DayNumber" value="@(i+1)" />
+                                    </div>
+                                </div>
+                            }
+                        </div>
+
+                        <div class="col-lg-12 p-t-20 text-center">
+                            <button type="button" id="add-more-days"
+                                    class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect m-b-10 m-r-20 btn-info">
+                                Add More Days
+                            </button>
+
+                            <button type="submit"
+                                    class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect m-b-10 m-r-20 btn-primary">
+                                Save Tour Plan
+                            </button>
+
+                            <button type="button" onclick="window.history.back()"
+                                    class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect m-b-10 btn-danger">
+                                Cancel
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const addMoreButton = document.getElementById('add-more-days');
+            const daysContainer = document.querySelector('.days-container');
+            let dayCount = @Model.TourPlans.Count;
+
+            addMoreButton.addEventListener('click', function () {
+                dayCount++;
+                const index = dayCount - 1;
+
+                const newDay = document.createElement('div');
+                newDay.className = 'day-fields';
+                newDay.dataset.day = dayCount;
+
+                newDay.innerHTML = `
+                    <h4>Day ${dayCount} <button type="button" class="remove-day btn btn-sm btn-danger" style="float:right;">Remove</button></h4>
+                    <div class="col-lg-12 p-t-20">
+                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
+                            <input class="mdl-textfield__input" name="TourPlans[${index}].Title" type="text" id="TourPlans_${index}__Title" />
+                            <label class="mdl-textfield__label">Title</label>
+                        </div>
+                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
+                            <input class="mdl-textfield__input" name="TourPlans[${index}].Description" type="text" id="TourPlans_${index}__Description" />
+                            <label class="mdl-textfield__label">Description</label>
+                        </div>
+                        <input type="hidden" name="TourPlans[${index}].DayNumber" value="${dayCount}" id="TourPlans_${index}__DayNumber" />
+                    </div>
+                `;
+
+                daysContainer.appendChild(newDay);
+                componentHandler.upgradeElements(newDay);
+            });
+
+            // Remove day handler
+            document.addEventListener('click', function (e) {
+                if (e.target.classList.contains('remove-day')) {
+                    const dayField = e.target.closest('.day-fields');
+                    dayField.remove();
+
+                    // Reindex all remaining days
+                    const remainingDays = document.querySelectorAll('.day-fields');
+                    remainingDays.forEach((day, index) => {
+                        const dayNumber = index + 1;
+                        day.dataset.day = dayNumber;
+                        day.querySelector('h4').innerHTML = `Day ${dayNumber} ${index > 0 ? '<button type="button" class="remove-day btn btn-sm btn-danger" style="float:right;">Remove</button>' : ''}`;
+
+                        // Update all input names and IDs
+                        const inputs = day.querySelectorAll('input');
+                        inputs.forEach(input => {
+                            const name = input.name.replace(/TourPlans\[\d+\]/, `TourPlans[${index}]`);
+                            input.name = name;
+                            input.id = name.replace(/\[/g, '_').replace(/\]/g, '').replace(/\./g, '__');
+                        });
+                    });
+
+                    dayCount = remainingDays.length;
+                }
+            });
+        });
+    </script>
+}

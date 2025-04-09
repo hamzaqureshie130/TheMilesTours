@@ -1,0 +1,101 @@
+﻿@page
+@model TheMilesTours.Areas.Admin.Pages.Tour.Package.AddModel
+@{
+}
+<div class="page-content">
+    <div class="page-bar">
+        <div class="page-title-breadcrumb">
+            <div class=" pull-left">
+                <div class="page-title">Add Tour Package</div>
+            </div>
+            <ol class="breadcrumb page-breadcrumb pull-right">
+                <li>
+                    <i class="fa fa-home"></i>&nbsp;
+                    <a class="parent-item" asp-area="CRM" asp-controller="Dashboard" asp-action="index">Home</a>
+                    &nbsp;<i class="fa fa-angle-right"></i>
+                </li>
+                <li class="active">Add Tour Package</li>
+            </ol>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="card-box">
+                <form method="post" enctype="multipart/form-data">
+                    <input type="hidden" asp-for="TourId" />
+
+                    <div class="card-body row">
+                        <!-- Destination -->
+                        <div class="col-lg-6 p-t-20">
+                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
+                                <input class="mdl-textfield__input" asp-for="TourPackage.Destination" type="text">
+                                <label class="mdl-textfield__label">Destination</label>
+                                <span asp-validation-for="TourPackage.Destination" class="text-danger"></span>
+                            </div>
+                        </div>
+
+                        <!-- Departure Location -->
+                        <div class="col-lg-6 p-t-20">
+                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
+                                <input class="mdl-textfield__input" asp-for="TourPackage.DepartureLocation" type="text">
+                                <label class="mdl-textfield__label">Departure Location</label>
+                                <span asp-validation-for="TourPackage.DepartureLocation" class="text-danger"></span>
+                            </div>
+                        </div>
+
+                        <!-- Return Location -->
+                        <div class="col-lg-6 p-t-20">
+                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
+                                <input class="mdl-textfield__input" asp-for="TourPackage.ReturnLocation" type="text">
+                                <label class="mdl-textfield__label">Return Location</label>
+                                <span asp-validation-for="TourPackage.ReturnLocation" class="text-danger"></span>
+                            </div>
+                        </div>
+
+                        <!-- Price Includes -->
+                        <div class="col-lg-12 p-t-20">
+                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
+                                <textarea class="mdl-textfield__input" asp-for="TourPackage.PriceIncludes" rows="3"></textarea>
+                                <label class="mdl-textfield__label">Price Includes (comma separated)</label>
+                                <span asp-validation-for="TourPackage.PriceIncludes" class="text-danger"></span>
+                            </div>
+                        </div>
+
+                        <!-- Price Does Not Include -->
+                        <div class="col-lg-12 p-t-20">
+                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
+                                <textarea class="mdl-textfield__input" asp-for="TourPackage.PriceDoesNotInclude" rows="3"></textarea>
+                                <label class="mdl-textfield__label">Price Does Not Include (comma separated)</label>
+                                <span asp-validation-for="TourPackage.PriceDoesNotInclude" class="text-danger"></span>
+                            </div>
+                        </div>
+
+                        <!-- Additional Prices -->
+                        <div class="col-lg-12 p-t-20">
+                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
+                                <textarea class="mdl-textfield__input" asp-for="TourPackage.AdditionalPrices" rows="3"></textarea>
+                                <label class="mdl-textfield__label">Additional Prices (comma separated)</label>
+                                <span asp-validation-for="TourPackage.AdditionalPrices" class="text-danger"></span>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-12 p-t-20 text-center">
+                            <button type="submit"
+                                    class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect m-b-10 m-r-20 btn-circle btn-primary">
+                                Save Package
+                            </button>
+                            <button type="button" onclick="window.history.back()"
+                                    class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect m-b-10 btn-circle btn-danger">
+                                Cancel
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

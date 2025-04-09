@@ -1,0 +1,30 @@
+﻿@page
+@model TheMilesTours.Pages.Destination.ListModel
+@{
+}
+<section class="destination-two section-space">
+    <div class="container">
+        <div class="row gutter-y-30 gutter-x-30">
+           
+            <div class="col-lg-12">
+
+                <div class="row gutter-y-30 gutter-x-30">
+                    @foreach(var item in Model.Destinations)
+                    {
+                        <div class="col-md-6 col-sm-6">
+                            <div class="destination-card-two after-color-1 wow fadeInUp" data-wow-duration='1500ms' data-wow-delay='100ms'>
+                                <div class="destination-card-two__thumb">
+                                    <img src="/@item.ComverImageUrl" alt="destination">
+                                    <a href="#" class="destination-card-two__overly"></a>
+                                </div><!-- /.destination-card-two__thumb -->
+                                <div class="destination-card-two__content">
+                                    <h3 class="destination-card-two__title"><a href="/destination/detail?id=@item.Id">@item.Title</a></h3><!-- /.destination-card-two__title -->
+                                </div><!-- /.destination-one__content -->
+                            </div><!-- /.destination-one -->
+                        </div>
+                    }
+                </div><!-- /.row -->
+            </div><!-- /.col-lg-8 -->
+        </div><!-- /.row -->
+    </div><!-- /.container -->
+</section><!-- /.destination-two -->

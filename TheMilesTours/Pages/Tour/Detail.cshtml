@@ -1,0 +1,874 @@
+﻿@page
+@model TheMilesTours.Pages.Tour.DetailModel
+@{
+  
+}
+<style>
+ 
+   
+
+    /* Payment Methods */
+    .payment-methods {
+        display: flex;
+        gap: 10px;
+        margin-top: 10px;
+    }
+
+    .payment-option {
+        flex: 1;
+    }
+
+        .payment-option input[type="radio"] {
+            display: none;
+        }
+
+        .payment-option label {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 15px 10px;
+            border: 1px solid #e0e0e0;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+            .payment-option label i {
+                font-size: 24px;
+                color: #2a6db5;
+                margin-bottom: 5px;
+            }
+
+        .payment-option input[type="radio"]:checked + label {
+            border-color: #2a6db5;
+            background-color: rgba(42, 109, 181, 0.05);
+        }
+
+    /* Booking Summary */
+    .booking-summary {
+        background: #f9f9f9;
+        border-radius: 5px;
+        padding: 15px;
+        margin: 20px 0;
+    }
+
+    .summary-item {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 8px;
+        color: #666;
+    }
+
+    .summary-total {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 10px;
+        padding-top: 10px;
+        border-top: 1px dashed #ddd;
+        font-weight: 600;
+        color: #333;
+    }
+
+    /* Button Improvements */
+    .gotur-btn--block {
+        display: block;
+        width: 100%;
+        padding: 15px;
+        font-size: 16px;
+    }
+
+    /* Secure Booking */
+    .secure-booking {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-top: 15px;
+        color: #666;
+        font-size: 13px;
+    }
+
+        .secure-booking i {
+            margin-right: 5px;
+            color: #4CAF50;
+        }
+
+    /* Responsive Adjustments */
+    @@media (max-width: 767px) {
+        .form-row
+
+    {
+        flex-direction: column;
+    }
+
+    .form-group.col-md-6 {
+        width: 100%;
+    }
+
+    .payment-methods {
+        flex-direction: column;
+    }
+
+    }
+    /* Payment Methods */
+    .payment-methods {
+        display: flex;
+        gap: 10px;
+        margin-top: 10px;
+    }
+
+    .payment-option {
+        flex: 1;
+    }
+
+        .payment-option input[type="radio"] {
+            display: none;
+        }
+
+        .payment-option label {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 15px 10px;
+            border: 1px solid #e0e0e0;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+            .payment-option label i {
+                font-size: 24px;
+                color: #2a6db5;
+                margin-bottom: 5px;
+            }
+
+        .payment-option input[type="radio"]:checked + label {
+            border-color: #2a6db5;
+            background-color: rgba(42, 109, 181, 0.05);
+        }
+
+    /* Booking Summary */
+    .booking-summary {
+        background: #f9f9f9;
+        border-radius: 5px;
+        padding: 15px;
+        margin: 20px 0;
+    }
+
+    .summary-item {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 8px;
+        color: #666;
+    }
+
+    .summary-total {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 10px;
+        padding-top: 10px;
+        border-top: 1px dashed #ddd;
+        font-weight: 600;
+        color: #333;
+    }
+
+    /* Button Improvements */
+    .gotur-btn--block {
+        display: block;
+        width: 100%;
+        padding: 15px;
+        font-size: 16px;
+    }
+
+    /* Secure Booking */
+    .secure-booking {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-top: 15px;
+        color: #666;
+        font-size: 13px;
+    }
+
+        .secure-booking i {
+            margin-right: 5px;
+            color: #4CAF50;
+        }
+
+    /* Responsive Adjustments */
+    @@media (max-width: 767px) {
+        .form-row
+
+    {
+        flex-direction: column;
+    }
+
+    .form-group.col-md-6 {
+        width: 100%;
+    }
+
+    .payment-methods {
+        flex-direction: column;
+    }
+
+    }
+    .payment-procedure {
+        font-family: 'Open Sans', sans-serif;
+        color: #333;
+        line-height: 1.6;
+    }
+
+    .payment-section {
+        margin-bottom: 25px;
+        padding-bottom: 15px;
+        border-bottom: 1px solid #eee;
+    }
+
+        .payment-section:last-child {
+            border-bottom: none;
+        }
+
+    .payment-heading {
+        color: #2a6db5;
+        font-size: 18px;
+        margin-bottom: 12px;
+        display: flex;
+        align-items: center;
+    }
+
+        .payment-heading i {
+            margin-right: 10px;
+            color: #ffc107;
+        }
+
+    .payment-details {
+        padding-left: 30px;
+    }
+
+        .payment-details li {
+            margin-bottom: 8px;
+            position: relative;
+        }
+
+    .bank-details {
+        background: #f9f9f9;
+        padding: 15px;
+        border-radius: 5px;
+        margin-top: 10px;
+    }
+
+    .bank-detail-row {
+        display: flex;
+        margin-bottom: 8px;
+    }
+
+    .bank-detail-label {
+        font-weight: 600;
+        min-width: 120px;
+    }
+
+    .bank-detail-value {
+        font-family: 'Courier New', monospace;
+        word-break: break-all;
+    }
+
+    .payment-notes {
+        margin-top: 20px;
+        font-style: italic;
+        color: #666;
+        font-size: 14px;
+    }
+    .custom-includes-table {
+    font-size: 16px;
+    width: 100%;
+    border-collapse: collapse;
+    }
+
+    .custom-includes-table th,
+    .custom-includes-table td {
+    padding: 12px 15px;
+    border: 1px solid #dee2e6;
+    vertical-align: top;
+    }
+
+    .custom-includes-table th {
+    background-color: #f8f9fa;
+    font-weight: 600;
+    width: 25%;
+    }
+
+    .includes-list {
+    list-style: none;
+    padding-left: 0;
+    margin: 0;
+    }
+
+    .includes-list li {
+    margin-bottom: 8px;
+    position: relative;
+    padding-left: 25px;
+    }
+
+    .includes-list li::before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    color: #28a745;
+    font-weight: bold;
+    }
+
+    .excludes-list li::before {
+    content: '✗';
+    color: #dc3545;
+    }
+</style>
+<div class="tour-one section-space-top wow fadeInUp" data-wow-duration='1500ms' data-wow-delay='500ms'>
+    <div class="tour-one__carousel gotur-owl__carousel owl-carousel owl-theme" data-owl-options='{
+    "items": 1,
+    "center":true,
+    "margin": 30,
+    "loop": true,
+    "smartSpeed": 700,
+    "nav": false,
+    "dots": false,
+    "autoplay": false,
+    "responsive": {
+    "0": {
+    "items": 1
+    },
+    "575": {
+    "items": 2
+    },
+    "768": {
+    "items": 2
+    },
+    "992": {
+    "items": 3
+    },
+    "1199": {
+    "items": 4
+    }
+    }
+    }'>
+        @foreach(var image in Model.Tour.GalleryImages)
+        {
+            <div class="item">
+                <div class="tour-one__item">
+                    <img src="/@image.ImageUrl" alt="tour image">
+                </div><!-- /.tour-one__item -->
+            </div>
+
+            <!-- /.item -->
+        }
+
+    </div><!-- /.tour-one__carousel -->
+</div><!-- /.tour-one -->
+
+<section class="tour-listing-details section-space-bottom">
+    <div class="tour-listing-details__destination wow fadeInUp" data-wow-duration='1500ms' data-wow-delay='500ms'>
+        <div class="container">
+            <div class="tour-listing-details__destination__inner">
+                <div class="tour-listing-details__destination__left">
+                    <h4 class="tour-listing-details__destination__title">@Model.Tour.Title</h4><!-- /.tour-listing-details__destination__title -->
+                    <div class="tour-listing-details__destination__revue">
+                        <div class="tour-listing-details__destination__ratings-box">
+                            <span>(17 Review)</span>
+                            <i class="icon-star"></i>
+                            <i class="icon-star"></i>
+                            <i class="icon-star"></i>
+                            <i class="icon-star"></i>
+                            <i class="icon-star"></i>
+                        </div>
+                        <div class="tour-listing-details__destination__posted">
+                            <i class="icon-pin1"></i>
+                            <p class="tour-listing-details__destination__posted-text">@Model.Tour.Location</p>
+                        </div><!-- / -->
+                    </div><!-- /.tour-listing-details__destination__revue -->
+                </div><!-- /.tour-listing-details__destination__left -->
+                <div class="tour-listing-details__destination__right">
+                    <a href="javascript:void(0)" class="tour-listing-details__destination__btn gotur-btn">Share <i class="icon-share"></i></a>
+                    <div class="tour-listing-details__destination__social__list">
+                        <a href="https://twitter.com/">
+                            <i class="fab fa-twitter" aria-hidden="true"></i>
+                            <span class="sr-only">Twitter</span>
+                        </a>
+                        <a href="https://facebook.com/">
+                            <i class="fab fa-facebook" aria-hidden="true"></i>
+                            <span class="sr-only">Facebook</span>
+                        </a>
+                        <a href="https://pinterest.com/">
+                            <i class="fab fa-pinterest-p" aria-hidden="true"></i>
+                            <span class="sr-only">Pinterest</span>
+                        </a>
+                        <a href="https://instagram.com/">
+                            <i class="fab fa-instagram" aria-hidden="true"></i>
+                            <span class="sr-only">Instagram</span>
+                        </a>
+                    </div>
+                </div><!-- /.tour-listing-details__destination__right -->
+            </div><!-- /.tour-listing-details__destination__inner -->
+        </div><!-- /.container -->
+    </div><!-- /.tour-listing-details__destination -->
+    <div class="tour-listing-details__info-area wow fadeInUp" data-wow-duration='1500ms' data-wow-delay='500ms'>
+        <div class="container">
+            <ul class="tour-listing-details__info-area__info list-unstyled">
+                <li>
+                    <div class="tour-listing-details__info-area__icon">
+                        <i class="icon-location"></i>
+                    </div><!-- /.tour-listing-details__info-area__icon -->
+                    <div class="tour-listing-details__info-area__content">
+                        <h5 class="tour-listing-details__info-area__title">Location</h5><!-- /.tour-listing-details__info-area__title -->
+                        <p class="tour-listing-details__info-area__text">@Model.Tour.Location</p><!-- /.tour-listing-details__info-area__text -->
+                    </div><!-- /.tour-listing-details__info-area__content -->
+                </li>
+                <li>
+                    <div class="tour-listing-details__info-area__icon">
+                        <i class="icon-travel-and-tourism"></i>
+                    </div><!-- /.tour-listing-details__info-area__icon -->
+                    <div class="tour-listing-details__info-area__content">
+                        <h5 class="tour-listing-details__info-area__title">Activities Type</h5><!-- /.tour-listing-details__info-area__title -->
+                        <p class="tour-listing-details__info-area__text">@Model.Tour.ActivityType</p><!-- /.tour-listing-details__info-area__text -->
+                    </div><!-- /.tour-listing-details__info-area__content -->
+                </li>
+                <li>
+                    <div class="tour-listing-details__info-area__icon">
+                        <i class="icon-clock"></i>
+                    </div><!-- /.tour-listing-details__info-area__icon -->
+                    <div class="tour-listing-details__info-area__content">
+                        <h5 class="tour-listing-details__info-area__title">Activate Day</h5><!-- /.tour-listing-details__info-area__title -->
+                        <p class="tour-listing-details__info-area__text">@Model.Tour.StayDuration</p><!-- /.tour-listing-details__info-area__text -->
+                    </div><!-- /.tour-listing-details__info-area__content -->
+                </li>
+                <li>
+                    <div class="tour-listing-details__info-area__icon">
+                        <i class="icon-group"></i>
+                    </div><!-- /.tour-listing-details__info-area__icon -->
+                    <div class="tour-listing-details__info-area__content">
+                        <h5 class="tour-listing-details__info-area__title">Traveler</h5><!-- /.tour-listing-details__info-area__title -->
+                        <p class="tour-listing-details__info-area__text">1</p><!-- /.tour-listing-details__info-area__text -->
+                    </div><!-- /.tour-listing-details__info-area__content -->
+                </li>
+                <li>
+                    <a href="checkout.html" class="gotur-btn">RS- @((int)Model.Tour.PricePerPerson) / Per Person</a>
+
+                </li>
+            </ul><!-- /.tour-listing-details__info-area__info -->
+        </div><!-- /.container -->
+    </div><!-- /.tour-listing-details__info-area -->
+    <div class="container">
+        <div class="row gutter-y-30">
+            <div class="col-lg-8">
+                <div class="tour-listing-details__content">
+                    <div class="tour-listing-details__content__item tour-listing-details__content__text wow fadeInUp" data-wow-duration='1500ms' data-wow-delay='500ms'>
+                        <h4 class="tour-listing-details__title">Overview</h4><!-- /.tour-listing-details__title -->
+                        <p class="tour-listing-details__text">@Model.Tour.OverView</p><!-- /.tour-listing-details__text -->
+                    </div><!-- /.tour-listing-details__content__item -->
+                    <div class="tour-listing-details__content__item wow fadeInUp" data-wow-duration='1500ms' data-wow-delay='500ms'>
+                        <h4 class="tour-listing-details__title">What's Included</h4>
+
+                        <table class="custom-includes-table mt-3">
+                            <tbody>
+                                <tr>
+                                    <th>Destination</th>
+                                    <td colspan="2">
+                                        <strong>@Model.Tour.TourPackage.Destination</strong>
+                                        <a href="#" class="text-success float-end">Discover Siran Valley</a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>Departure Location</th>
+                                    <td colspan="2">@Model.Tour.TourPackage.DepartureLocation</td>
+                                </tr>
+                                <tr>
+                                    <th>Return Location</th>
+                                    <td colspan="2">@Model.Tour.TourPackage.ReturnLocation</td>
+                                </tr>
+                                <tr>
+                                    <th>Price Includes</th>
+                                    <td colspan="2">
+                                        <ul class="includes-list row">
+                                            @foreach (var item in Model.Tour.TourPackage.PriceIncludes.Split(",", StringSplitOptions.RemoveEmptyEntries))
+                                            {
+                                                <li class="col-md-6">@item.Trim()</li>
+                                            }
+                                        </ul>
+                                    </td>
+
+                                </tr>
+                                <tr>
+                                    <th>Price Does Not Include</th>
+                                    <td colspan="2">
+                                        <ul class="includes-list excludes-list row">
+                                            @foreach (var item in Model.Tour.TourPackage.PriceDoesNotInclude.Split(",", StringSplitOptions.RemoveEmptyEntries))
+                                            {
+                                                <li class="col-md-6">@item.Trim()</li>
+                                            }
+                                        </ul>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <th>Additional Prices</th>
+                                    <td colspan="2"><strong>Foreigners: RS- @Model.Tour.TourPackage.AdditionalPrices</strong></td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="tour-listing-details__content__item tour-listing-details__list wow fadeInUp" data-wow-duration='1500ms' data-wow-delay='500ms'>
+                        <h4 class="tour-listing-details__title">Equipment Required</h4><!-- /.tour-listing-details__title -->
+                        <ul class="tour-listing-details__content__list">
+                            @foreach (var tourEquipement in Model.Tour.TourEquipement.Split(",", StringSplitOptions.RemoveEmptyEntries))
+                            {
+                                <li><i class="icon-check-star"></i>@tourEquipement.Trim()</li>
+
+                            }
+
+                          
+                        </ul><!-- /.tour-listing-details__content__list -->
+                    </div><!-- /.tour-listing-details__content__item -->
+
+                    <div class="tour-listing-details__content__item tour-listing-details__list wow fadeInUp" data-wow-duration='1500ms' data-wow-delay='500ms'>
+                        <h4 class="tour-listing-details__title">Attraction places</h4><!-- /.tour-listing-details__title -->
+                        <ul class="tour-listing-details__content__list">
+                            @foreach (var tourAttraction in Model.Tour.TourAttraction.Split(",", StringSplitOptions.RemoveEmptyEntries))
+                            {
+                                <li><i class="icon-check-star"></i>@tourAttraction.Trim()</li>
+
+                            }
+
+
+                        </ul><!-- /.tour-listing-details__content__list -->
+                    </div><!-- /.tour-listing-details__content__item -->
+
+                    <div class="tour-listing-details__content__item tour-listing-details__list wow fadeInUp" data-wow-duration='1500ms' data-wow-delay='500ms'>
+                        <h4 class="tour-listing-details__title">Payment Procedure</h4><!-- /.tour-listing-details__title -->
+
+                        <div class="payment-procedure">
+                            <div class="payment-section">
+                                <h5 class="payment-heading"><i class="icon-check-star"></i> Payment Terms</h5>
+                                <ul class="payment-details">
+                                    <li>50% advance payment required for booking confirmation</li>
+                                    <li>Remaining 50% due at the time of departure</li>
+                                </ul>
+                            </div>
+
+                            <div class="payment-section">
+                                <h5 class="payment-heading"><i class="icon-check-star"></i> Payment Methods</h5>
+                                <ul class="payment-details">
+                                    <li>Online transfer to our bank account</li>
+                                    <li>Cash payment at our office</li>
+                                </ul>
+                            </div>
+
+                            <div class="payment-section">
+                                <h5 class="payment-heading"><i class="icon-check-star"></i> Bank Transfer Details</h5>
+                                <div class="bank-details">
+                                    <div class="bank-detail-row">
+                                        <span class="bank-detail-label">Bank Name:</span>
+                                        <span class="bank-detail-value">Bank Al Habib</span>
+                                    </div>
+                                    <div class="bank-detail-row">
+                                        <span class="bank-detail-label">Account Title:</span>
+                                        <span class="bank-detail-value">THE MILES TOUR</span>
+                                    </div>
+                                    <div class="bank-detail-row">
+                                        <span class="bank-detail-label">Account Number:</span>
+                                        <span class="bank-detail-value">55720081000808010</span>
+                                    </div>
+                                    <div class="bank-detail-row">
+                                        <span class="bank-detail-label">IBAN:</span>
+                                        <span class="bank-detail-value">PK06BAHL55720081000808010</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                          
+                        </div>
+                    </div><!-- /.tour-listing-details__content__item -->
+
+                    <div class="tour-listing-details__content__item tour-listing-details__ture-plan">
+                        <h4 class="tour-listing-details__title">Tour Plan</h4><!-- /.tour-listing-details__title -->
+                        <div class="faq-page__accordion faq-accordion gotur-accordion" data-grp-name="gotur-accordion">
+                            @foreach(var tourPlan in Model.Tour.TourPlan)
+                            {
+                                <div class="accordion  wow fadeInUp" data-wow-duration='1500ms' data-wow-delay='500ms'>
+                                    <div class="accordion-title">
+                                        <h4 class="accordion-title__text">- @tourPlan.Title<span class="accordion-title__icon"></span></h4>
+                                    </div><!-- /.accordian-title -->
+                                    <div class="accordion-content">
+                                        <div class="inner">
+                                            <p class="inner__text">@tourPlan.Description</p>
+                                        </div><!-- /.accordian-content -->
+                                    </div>
+                                </div>
+
+                                <!-- /.accordian-item -->
+                            }
+
+                        </div>
+                    </div><!-- /.tour-listing-details__content__item -->
+                    <div class="tour-listing-details__content__item tour-listing-details__ture-list">
+                        <div class="container">
+                            <div class="feature-package__top">
+                                <div class="row align-items-end">
+                                    <div class="col-lg-8">
+                                        <h4 class="tour-listing-details__title">Related Tour List</h4><!-- /.tour-listing-details__title -->
+                                    </div><!-- /.col-lg-8 -->
+                                    <div class="col-lg-4">
+                                        <div class="feature-package__bottom__nav">
+                                            <button class="feature-package__carousel__nav--left"><span class="icon-arrow-left"></span></button>
+                                            <button class="feature-package__carousel__nav--right"><span class="icon-arrow-right"></span></button>
+                                        </div>
+                                    </div><!-- /.col-lg-4 -->
+                                </div><!-- /.row -->
+                            </div><!-- /.feature-package__top -->
+                        </div><!-- /.container -->
+
+                        <div class="container-fluid">
+                            <div class="feature-package__inner">
+                                <div class="feature-package__carousel gotur-owl__carousel gotur-owl__carousel--custom-nav gotur-owl__carousel--with-shadow owl-carousel owl-theme"
+                                data-owl-nav-prev=".feature-package__carousel__nav--left"
+                                data-owl-nav-next=".feature-package__carousel__nav--right"
+                                data-owl-options='{
+                                "items": 2,
+                                "margin": 30,
+                                "loop": false,
+                                "smartSpeed": 700,
+                                "nav": false,
+                                "dots": false,
+                                "autoplay": false,
+                                "responsive": {
+                                "0": {
+                                "items": 1
+                                },
+                                "576": {
+                                "items": 1
+                                },
+                                "768": {
+                                "items": 2
+                                },
+                                "992": {
+                                "items": 2
+                                },
+                                "1200": {
+                                "items": 2
+                                }
+                                }
+                                }'>
+                                    @foreach(var tour in Model.TourList)
+                                    {
+                                        <!-- First Tour Item -->
+                                        <div class="item">
+                                            <div class="listing-card-four wow fadeInUp" data-wow-duration='1500ms' data-wow-delay='100ms'>
+                                                <div class="listing-card-four__image">
+                                                    <img src="/@tour.CoverImageUrl" alt="All Inclusive Ultimate Circle Island Day with Lunch">
+                                                    <div class="listing-card-four__btn-group">
+                                                        <div class="listing-card-four__featured">Featured</div><!-- /.listing-card-four__featured -->
+                                                    </div><!-- /.listing-card-four__btn-group -->
+                                                    <div class="listing-card-four__btns">
+                                                        <a href="#"><i class="far fa-heart"></i></a>
+                                                        <div class="listing-card-four__btns__hover">
+                                                            <a href="#" class="listing-card-four__popup card__popup" data-gallery-options='{
+                                            "items": [
+                                                {
+                                                    "src": "assets/images/blog/listing-1-1.jpg"
+                                                },
+                                                {
+                                                    "src": "assets/images/blog/listing-1-2.jpg"
+                                                },
+                                                {
+                                                    "src": "assets/images/blog/listing-1-3.jpg"
+                                                }
+                                            ],
+                                            "gallery": {
+                                                "enabled": true
+                                            },
+                                            "type": "image"
+                                        }'>
+                                                                <span class="icon-image"></span>
+                                                            </a>
+                                                            <a class="video-popup" href="https://www.youtube.com/watch?v=0MuL8fd3pb8"><span class="icon-video"></span></a>
+                                                        </div><!-- /.listing-card-four__btns__hover -->
+                                                    </div>
+                                                    <ul class="listing-card-four__meta list-unstyled">
+                                                        <li>
+                                                            <a href="tour-listing-details-2.html"> <span class="listing-card-four__meta__icon"> <i class="icon-pin1"></i> </span>@tour.Location</a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="tour-listing-details-2.html"> <span class="listing-card-four__meta__icon"> <i class="icon-calendar"></i> </span>@tour.StayDuration</a>
+                                                        </li>
+                                                    </ul><!-- /.listing-card-four__meta -->
+                                                    <a href="tour-listing-details-2.html" class="listing-card-four__image__overly"></a>
+                                                </div><!-- /.listing-card-four__image -->
+                                                <div class="listing-card-four__content">
+                                                    <div class="listing-card-four__rating">
+                                                        <span>(10 Review)</span>
+                                                        <i class="icon-star"></i>
+                                                        <i class="icon-star"></i>
+                                                        <i class="icon-star"></i>
+                                                        <i class="icon-star"></i>
+                                                        <i class="icon-star"></i>
+                                                    </div><!-- /.listing-card-four__rating -->
+                                                    <h3 class="listing-card-four__title"><a href="tour-listing-details-2.html">@tour.Title</a></h3><!-- /.listing-card-four__title -->
+
+                                                    <div class="listing-card-four__content__btn">
+                                                        <div class="listing-card-four__price">
+                                                            <span class="listing-card-four__price__sub">Per Day</span>
+                                                            <span class="listing-card-four__price__number">RS-@((int)Model.Tour.PricePerPerson)</span>
+                                                        </div><!-- /.listing-card-four__price -->
+                                                        <a href="tour-listing-details-2.html" class="listing-card-four__btn gotur-btn"> Book Now <span class="icon"><i class="icon-right"></i> </span></a>
+                                                    </div><!-- /.listing-card-four__content__btn -->
+                                                </div><!-- /.listing-card-four__content -->
+                                            </div><!-- /.listing-card-four -->
+                                        </div>
+
+                                        <!-- /.item -->
+                                    }
+
+                                 
+                                  
+                                </div><!-- /.feature-package__carousel -->
+                            </div><!-- /.feature-package__inner -->
+                        </div><!-- /.container-fluid -->
+                    </div><!-- /.tour-listing-details__content__item -->
+                    <div class="tour-listing-details__content__item tour-listing-details__map wow fadeInUp" data-wow-duration='1500ms' data-wow-delay='500ms'>
+                        <h4 class="tour-listing-details__title">Location</h4><!-- /.tour-listing-details__title -->
+                        <div class="tour-listing-details__map-box">
+                            <iframe title="template google map" src="@Model.Tour.GoogleMapUrl" class="map__@@extraClassName" allowfullscreen></iframe>
+                        </div>
+                    </div><!-- /.tour-listing-details__content__item -->
+                   
+                    <div class="tour-listing-details__content__item tour-listing-details__reviews">
+                        <h4 class="tour-listing-details__title wow fadeInUp" data-wow-duration='1500ms' data-wow-delay='500ms'>1 Reviews</h4><!-- /.tour-listing-details__title -->
+                        <ul class="list-unstyled product-details__comment__list">
+                            <li class="product-details__comment__card wow fadeInUp" data-wow-duration='1500ms' data-wow-delay='500ms'>
+                                <div class="product-details__comment__card__image">
+                                    <img src="/assets/site/assets/images/blog/blog-comment-1-1.png" alt="gotur">
+                                </div>
+                                <div class="product-details__comment__card__content">
+                                    <div class="product-details__comment__card__top">
+                                        <div class="product-details__comment__card__info">
+                                            <h3 class="product-details__comment__card__title">Leslie Alexander</h3>
+                                            <p class="product-details__comment__card__date">February 10, 2024 at 2:37 pm</p>
+                                        </div>
+                                        <div class="product-details__comment__card__star">
+                                            <span class="fa fa-star"></span>
+                                            <span class="fa fa-star"></span>
+                                            <span class="fa fa-star"></span>
+                                            <span class="fa fa-star"></span>
+                                            <span class="fa fa-star"></span>
+                                        </div>
+                                    </div>
+                                    <p class="product-details__comment__card__text">Neque porro est qui dolorem ipsum quia quaed inventor veritatis et quasi architecto var sed efficitur turpis gilla sed sit amet finibus eros. Lorem Ipsum is simply dummy</p>
+                                </div>
+                            </li>
+                        </ul><!-- /.list-unstyled comments-one__list -->
+                    </div><!-- /.tour-listing-details__content__item -->
+                    <div class="tour-listing-details__content__item tour-listing-details__add-reviews">
+                        <h4 class="tour-listing-details__title wow fadeInUp" data-wow-duration='1500ms' data-wow-delay='500ms'>Add a Review</h4><!-- /.tour-listing-details__title -->
+                        <div class="product-details__form-ratings wow fadeInUp" data-wow-duration='1500ms' data-wow-delay='500ms'>
+                            <p class="product-details__form-ratings__label">Your Rating*</p>
+                            <span class="far fa-star"></span>
+                            <span class="far fa-star"></span>
+                            <span class="far fa-star"></span>
+                            <span class="far fa-star"></span>
+                            <span class="far fa-star"></span>
+                        </div><!-- review-ratings -->
+                        <form class="comments-form__form contact-form-validated product-details__form__form form-one wow fadeInUp" data-wow-duration='1500ms' data-wow-delay='500ms'>
+                            <div class="form-one__group">
+                                <div class="form-one__control">
+                                    <label for="name">Your Name*</label>
+                                    <input type="text" name="name" id="name" placeholder="Your Name">
+                                </div>
+                                <div class="form-one__control">
+                                    <label for="email">Your Email*</label>
+                                    <input type="email" name="email" id="email" placeholder="Your Email">
+                                </div>
+                                <div class="form-one__control form-one__control--full">
+                                    <label for="message">Message*</label>
+                                    <textarea name="message" id="message" placeholder="Write Message . . "></textarea>
+                                </div>
+
+                                <div class="form-one__control form-one__control--full">
+                                    <button type="submit" class="gotur-btn gotur-btn--base">Submit Now <i class="icon-right"></i></button>
+                                </div>
+                            </div>
+                        </form>
+                        <div class="result"></div>
+                    </div><!-- / -->
+                </div><!-- /.tour-listing-details__content -->
+
+            </div><!-- /.col-lg-8 -->
+            <div class="col-lg-4">
+                <div class="tour-listing-details__sidebar">
+                    <div class="tour-listing-details__sidebar__item tour-listing-details__sidebar__item-form wow fadeInUp" data-wow-delay="0.4s" data-wow-duration="1500ms">
+                        <h4 class="tour-listing-details__sidebar__title">Book This Tour</h4>
+                        <div class="sidebar-two__form">
+                            <form id="bookingForm" class="sidebar-two__form__inner" onsubmit="return false;">
+                                <div class="sidebar-two__form__control">
+                                    <label for="name">Your Name</label>
+                                    <input id="name" class="form-control" placeholder="Enter your name" />
+                                </div>
+
+                                <div class="sidebar-two__form__control">
+                                    <label for="email">Your Email Address</label>
+                                    <input id="email" type="email" class="form-control" placeholder="Enter your email" />
+                                </div>
+
+                                <div class="sidebar-two__form__control">
+                                    <label for="date">Booking Date</label>
+                                    <input id="date" type="date" class="form-control" />
+                                </div>
+
+                                <div class="sidebar-two__form__control">
+                                    <label for="payment">Payment Method</label>
+                                    <select id="payment" class="form-control">
+                                        <option value="">-- Select --</option>
+                                        <option>Bank Account</option>
+                                        <option>EasyPaisa</option>
+                                        <option>JazzCash</option>
+                                        <option>Cash</option>
+                                    </select>
+                                </div>
+
+                                <div class="mt-4">
+                                    <a href="#" onclick="sendToWhatsApp()" class="gotur-btn gotur-btn--base">
+                                        Book Now on WhatsApp <i class="icon-right"></i>
+                                    </a>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+       
+
+        </div><!-- /.row justify-content-center -->
+    </div><!-- /.container -->
+</section><!-- /.tour-listing-details -->
+@section Scripts{
+    <script>
+             function sendToWhatsApp() {
+            var name = document.getElementById("name").value.trim();
+            var email = document.getElementById("email").value.trim();
+            var date = document.getElementById("date").value;
+            var payment = document.getElementById("payment").value;
+
+        
+
+            var message = `Hello TheMilesTours Team,%0A%0AI would like to book a tour.%0A%0A` +
+                          `*Full Name:* ${name}%0A` +
+                          `*Email:* ${email}%0A` +
+                          `*Booking Date:* ${date}%0A` +
+                          `*Payment Method:* ${payment}%0A%0A` +
+                          `Please confirm the booking.%0AThanks!`;
+
+            var whatsappLink = `https://wa.me/923144107134?text=${encodeURIComponent(message)}`;
+            window.open(whatsappLink, '_blank');
+        }
+    </script>
+}

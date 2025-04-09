@@ -1,0 +1,61 @@
+﻿@page
+@model TheMilesTours.Pages.Destination.DetailModel
+@{
+}
+<section class="destination-details section-space">
+    <div class="container">
+        <div class="destination-carousel">
+            <div class="destination-carousel__inner gotur-owl__carousel gotur-owl__carousel--basic-nav owl-carousel owl-theme" data-owl-options='{
+            "items" : 1,
+            "margin" : 30,
+            "loop" : true,
+            "smartSpeed" : 700,
+            "nav" : true,
+            "navText" : ["<span class=\"icon-arrow-left\"></span>","<span class=\"icon-arrow-right\"></span>"],
+            "dots": false,
+            "autoplay": false
+            }'>
+                @foreach(var image in Model.Destination.DestinationGallery)
+                {
+                    <div class="item">
+                        <div class="destination-carousel__item">
+                            <img src="/@image.ImageUrl" alt="destination">
+                        </div><!-- /.destination-carousel__item -->
+                    </div>
+
+                    <!-- /.item -->
+
+                }
+
+            </div><!-- /.destination-carousel__inner -->
+        </div><!-- /.destination-carousel -->
+        <div class="row gutter-y-30">
+            <div class="col-lg-12">
+                <div class="destination-details__content">
+
+                    <div class="destination-details__content__item">
+                        <h3 class="destination-details__title wow fadeInUp" data-wow-duration='1500ms' data-wow-delay='500ms'>Overview</h3><!-- /.destination-details__title -->
+                        <p class="destination-details__text wow fadeInUp" data-wow-duration='1500ms' data-wow-delay='500ms'>@Html.Raw(Model.Destination.OverView)</p><!-- /.destination-details__text -->
+                    </div><!-- /.destination-details__content__item -->
+
+                    
+                    <div class="destination-details__content__thumb wow fadeInUp" data-wow-duration='1500ms' data-wow-delay='500ms'>
+                        <div class="row gutter-y-30">
+                            @foreach (var image in Model.Destination.DestinationGallery.Take(2))
+                            {
+                                <div class="col-md-6">
+                                    <div class="destination-details__content__thumb__item"><img src="/@image.ImageUrl" alt="destination details"></div><!-- /.destination-details__content__thumb -->
+                                </div>
+                                <!-- /.col-md-6 -->
+                            }
+                          
+                        </div><!-- /.row -->
+                    </div><!-- /.destination-details__content__thumb -->
+
+                  
+                </div><!-- /.destination-details__content -->
+            </div><!-- /.col-lg-8 -->
+         
+        </div><!-- /.row -->
+    </div><!-- /.container -->
+</section><!-- /.destination-details -->

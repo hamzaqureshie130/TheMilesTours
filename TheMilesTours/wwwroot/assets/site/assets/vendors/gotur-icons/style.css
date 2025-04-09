@@ -118,6 +118,9 @@
 .icon-loupe:before {
   content: "\e909";
 }
+.icon-insta:before {
+    content: "\e910";
+}
 .icon-paper-plane:before {
   content: "\e90a";
 }

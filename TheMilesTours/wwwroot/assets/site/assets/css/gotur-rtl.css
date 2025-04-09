@@ -3391,7 +3391,7 @@ h6 {
 }
 .main-header--two .main-header__logo {
   padding: 22.5px 37px;
-  background-color: black;
+  background-color: black !important;
   border-radius: 1000px 0 0 1000px;
   position: relative;
   z-index: 1;
