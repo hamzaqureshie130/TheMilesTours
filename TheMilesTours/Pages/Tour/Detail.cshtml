@@ -1,306 +1,315 @@
 ﻿@page
 @model TheMilesTours.Pages.Tour.DetailModel
 @{
-  
+
 }
 <style>
+    .has-error input,
+    .has-error textarea {
+    border-color: #dc3545 !important;
+    }
 
+    .error-message {
+    display: block;
+    margin-top: 5px;
+    font-size: 0.875em;
+    }
     /* Filled stars - yellow */
     .star-filled {
-        color: #ffc107 !important;
+    color: #ffc107 !important;
     }
 
     /* Empty stars - gray/white */
     .star-empty {
-        color: #e5e5e5 !important;
+    color: #e5e5e5 !important;
     }
 
 
     .custom-rating-stars .stars {
-        display: flex;
-        gap: 5px;
-        font-size: 24px;
-        cursor: pointer;
-        user-select: none;
-        color: gold;
+    display: flex;
+    gap: 5px;
+    font-size: 24px;
+    cursor: pointer;
+    user-select: none;
+    color: gold;
     }
 
     .custom-rating-stars .star {
-        transition: color 0.2s;
+    transition: color 0.2s;
     }
 
 
     /* Payment Methods */
     .payment-methods {
-        display: flex;
-        gap: 10px;
-        margin-top: 10px;
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
     }
 
     .payment-option {
-        flex: 1;
+    flex: 1;
     }
 
-        .payment-option input[type="radio"] {
-            display: none;
-        }
+    .payment-option input[type="radio"] {
+    display: none;
+    }
 
-        .payment-option label {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            padding: 15px 10px;
-            border: 1px solid #e0e0e0;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: all 0.3s;
-        }
+    .payment-option label {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 15px 10px;
+    border: 1px solid #e0e0e0;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s;
+    }
 
-            .payment-option label i {
-                font-size: 24px;
-                color: #2a6db5;
-                margin-bottom: 5px;
-            }
+    .payment-option label i {
+    font-size: 24px;
+    color: #2a6db5;
+    margin-bottom: 5px;
+    }
 
-        .payment-option input[type="radio"]:checked + label {
-            border-color: #2a6db5;
-            background-color: rgba(42, 109, 181, 0.05);
-        }
+    .payment-option input[type="radio"]:checked + label {
+    border-color: #2a6db5;
+    background-color: rgba(42, 109, 181, 0.05);
+    }
 
     /* Booking Summary */
     .booking-summary {
-        background: #f9f9f9;
-        border-radius: 5px;
-        padding: 15px;
-        margin: 20px 0;
+    background: #f9f9f9;
+    border-radius: 5px;
+    padding: 15px;
+    margin: 20px 0;
     }
 
     .summary-item {
-        display: flex;
-        justify-content: space-between;
-        margin-bottom: 8px;
-        color: #666;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 8px;
+    color: #666;
     }
 
     .summary-total {
-        display: flex;
-        justify-content: space-between;
-        margin-top: 10px;
-        padding-top: 10px;
-        border-top: 1px dashed #ddd;
-        font-weight: 600;
-        color: #333;
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+    padding-top: 10px;
+    border-top: 1px dashed #ddd;
+    font-weight: 600;
+    color: #333;
     }
 
     /* Button Improvements */
     .gotur-btn--block {
-        display: block;
-        width: 100%;
-        padding: 15px;
-        font-size: 16px;
+    display: block;
+    width: 100%;
+    padding: 15px;
+    font-size: 16px;
     }
 
     /* Secure Booking */
     .secure-booking {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        margin-top: 15px;
-        color: #666;
-        font-size: 13px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 15px;
+    color: #666;
+    font-size: 13px;
     }
 
-        .secure-booking i {
-            margin-right: 5px;
-            color: #4CAF50;
-        }
+    .secure-booking i {
+    margin-right: 5px;
+    color: #4CAF50;
+    }
 
     /* Responsive Adjustments */
     @@media (max-width: 767px) {
-        .form-row
+    .form-row
 
     {
-        flex-direction: column;
+    flex-direction: column;
     }
 
     .form-group.col-md-6 {
-        width: 100%;
+    width: 100%;
     }
 
     .payment-methods {
-        flex-direction: column;
+    flex-direction: column;
     }
 
     }
     /* Payment Methods */
     .payment-methods {
-        display: flex;
-        gap: 10px;
-        margin-top: 10px;
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
     }
 
     .payment-option {
-        flex: 1;
+    flex: 1;
     }
 
-        .payment-option input[type="radio"] {
-            display: none;
-        }
+    .payment-option input[type="radio"] {
+    display: none;
+    }
 
-        .payment-option label {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            padding: 15px 10px;
-            border: 1px solid #e0e0e0;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: all 0.3s;
-        }
+    .payment-option label {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 15px 10px;
+    border: 1px solid #e0e0e0;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s;
+    }
 
-            .payment-option label i {
-                font-size: 24px;
-                color: #2a6db5;
-                margin-bottom: 5px;
-            }
+    .payment-option label i {
+    font-size: 24px;
+    color: #2a6db5;
+    margin-bottom: 5px;
+    }
 
-        .payment-option input[type="radio"]:checked + label {
-            border-color: #2a6db5;
-            background-color: rgba(42, 109, 181, 0.05);
-        }
+    .payment-option input[type="radio"]:checked + label {
+    border-color: #2a6db5;
+    background-color: rgba(42, 109, 181, 0.05);
+    }
 
     /* Booking Summary */
     .booking-summary {
-        background: #f9f9f9;
-        border-radius: 5px;
-        padding: 15px;
-        margin: 20px 0;
+    background: #f9f9f9;
+    border-radius: 5px;
+    padding: 15px;
+    margin: 20px 0;
     }
 
     .summary-item {
-        display: flex;
-        justify-content: space-between;
-        margin-bottom: 8px;
-        color: #666;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 8px;
+    color: #666;
     }
 
     .summary-total {
-        display: flex;
-        justify-content: space-between;
-        margin-top: 10px;
-        padding-top: 10px;
-        border-top: 1px dashed #ddd;
-        font-weight: 600;
-        color: #333;
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+    padding-top: 10px;
+    border-top: 1px dashed #ddd;
+    font-weight: 600;
+    color: #333;
     }
 
     /* Button Improvements */
     .gotur-btn--block {
-        display: block;
-        width: 100%;
-        padding: 15px;
-        font-size: 16px;
+    display: block;
+    width: 100%;
+    padding: 15px;
+    font-size: 16px;
     }
 
     /* Secure Booking */
     .secure-booking {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        margin-top: 15px;
-        color: #666;
-        font-size: 13px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 15px;
+    color: #666;
+    font-size: 13px;
     }
 
-        .secure-booking i {
-            margin-right: 5px;
-            color: #4CAF50;
-        }
+    .secure-booking i {
+    margin-right: 5px;
+    color: #4CAF50;
+    }
 
     /* Responsive Adjustments */
     @@media (max-width: 767px) {
-        .form-row
+    .form-row
 
     {
-        flex-direction: column;
+    flex-direction: column;
     }
 
     .form-group.col-md-6 {
-        width: 100%;
+    width: 100%;
     }
 
     .payment-methods {
-        flex-direction: column;
+    flex-direction: column;
     }
 
     }
     .payment-procedure {
-        font-family: 'Open Sans', sans-serif;
-        color: #333;
-        line-height: 1.6;
+    font-family: 'Open Sans', sans-serif;
+    color: #333;
+    line-height: 1.6;
     }
 
     .payment-section {
-        margin-bottom: 25px;
-        padding-bottom: 15px;
-        border-bottom: 1px solid #eee;
+    margin-bottom: 25px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #eee;
     }
 
-        .payment-section:last-child {
-            border-bottom: none;
-        }
+    .payment-section:last-child {
+    border-bottom: none;
+    }
 
     .payment-heading {
-        color: #2a6db5;
-        font-size: 18px;
-        margin-bottom: 12px;
-        display: flex;
-        align-items: center;
+    color: #2a6db5;
+    font-size: 18px;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
     }
 
-        .payment-heading i {
-            margin-right: 10px;
-            color: #ffc107;
-        }
+    .payment-heading i {
+    margin-right: 10px;
+    color: #ffc107;
+    }
 
     .payment-details {
-        padding-left: 30px;
+    padding-left: 30px;
     }
 
-        .payment-details li {
-            margin-bottom: 8px;
-            position: relative;
-        }
+    .payment-details li {
+    margin-bottom: 8px;
+    position: relative;
+    }
 
     .bank-details {
-        background: #f9f9f9;
-        padding: 15px;
-        border-radius: 5px;
-        margin-top: 10px;
+    background: #f9f9f9;
+    padding: 15px;
+    border-radius: 5px;
+    margin-top: 10px;
     }
 
     .bank-detail-row {
-        display: flex;
-        margin-bottom: 8px;
+    display: flex;
+    margin-bottom: 8px;
     }
 
     .bank-detail-label {
-        font-weight: 600;
-        min-width: 120px;
+    font-weight: 600;
+    min-width: 120px;
     }
 
     .bank-detail-value {
-        font-family: 'Courier New', monospace;
-        word-break: break-all;
+    font-family: 'Courier New', monospace;
+    word-break: break-all;
     }
 
     .payment-notes {
-        margin-top: 20px;
-        font-style: italic;
-        color: #666;
-        font-size: 14px;
+    margin-top: 20px;
+    font-style: italic;
+    color: #666;
+    font-size: 14px;
     }
     .custom-includes-table {
     font-size: 16px;
@@ -351,7 +360,7 @@
     "items": 1,
     "center":true,
     "margin": 30,
-    "loop": true,
+    "loop": false,
     "smartSpeed": 700,
     "nav": false,
     "dots": false,
@@ -374,11 +383,11 @@
     }
     }
     }'>
-        @foreach(var image in Model.Tour.GalleryImages)
+        @foreach(var image in Model.Gallery)
         {
             <div class="item">
                 <div class="tour-one__item">
-                    <img src="@image.ImageUrl" alt="tour image">
+                    <img src="@image.ImageUrl" loading="lazy" alt="tour image">
                 </div><!-- /.tour-one__item -->
             </div>
 
@@ -399,7 +408,10 @@
                             double avgRating = Model.Tour.Reviews.Any() ? Model.Tour.Reviews.Average(r => r.Rating) : 0;
                             int fullStars = (int)Math.Floor(avgRating);
                         }
-
+                        @if(Model.Tour.Reviews is not null && Model.Tour.Reviews.Count() > 0)
+                        {
+                            
+                       
                         <div class="tour-listing-details__destination__ratings-box">
                             <span>(@Model.Tour.Reviews.Count() Review)</span>
 
@@ -409,7 +421,7 @@
                                 <i class="icon-star @starClass"></i>
                             }
                         </div>
-
+                        }
                         <div class="tour-listing-details__destination__posted">
                             <i class="icon-pin1"></i>
                             <p class="tour-listing-details__destination__posted-text">@Model.Tour.Location</p>
@@ -503,7 +515,7 @@
                                     <th>Destination</th>
                                     <td colspan="2">
                                         <strong>@Model.Tour.TourPackage.Destination</strong>
-                                        <a href="#" class="text-success float-end">Discover Siran Valley</a>
+                                        <a href="#googleMap" class="text-success float-end">Discover @Model.Tour.Title</a>
                                     </td>
                                 </tr>
                                 <tr>
@@ -626,7 +638,7 @@
                             {
                                 <div class="accordion  wow fadeInUp" data-wow-duration='1500ms' data-wow-delay='500ms'>
                                     <div class="accordion-title">
-                                        <h4 class="accordion-title__text">- @tourPlan.Title<span class="accordion-title__icon"></span></h4>
+                                        <h4 class="accordion-title__text"><span class="accordion-title__icon"></span></h4>
                                     </div><!-- /.accordian-title -->
                                     <div class="accordion-content">
                                         <div class="inner">
@@ -766,7 +778,7 @@
                     </div><!-- /.tour-listing-details__content__item -->
                     <div class="tour-listing-details__content__item tour-listing-details__map wow fadeInUp" data-wow-duration='1500ms' data-wow-delay='500ms'>
                         <h4 class="tour-listing-details__title">Location</h4><!-- /.tour-listing-details__title -->
-                        <div class="tour-listing-details__map-box">
+                        <div class="tour-listing-details__map-box" id="googleMap">
                             <iframe title="template google map" src="@Model.Tour.GoogleMapUrl" class="map__@@extraClassName" allowfullscreen></iframe>
                         </div>
                     </div><!-- /.tour-listing-details__content__item -->
@@ -802,8 +814,8 @@
                         }
                     </div><!-- /.tour-listing-details__content__item -->
                     <div class="tour-listing-details__content__item tour-listing-details__add-reviews">
-                        <h4 class="tour-listing-details__title wow fadeInUp" data-wow-duration='1500ms' data-wow-delay='500ms'>Add a Review</h4><!-- /.tour-listing-details__title -->
-                
+                        <h4 class="tour-listing-details__title wow fadeInUp" data-wow-duration='1500ms' data-wow-delay='500ms'>Add a Review</h4>
+
                         <div class="custom-rating-stars">
                             <p>Your Rating*</p>
                             <div class="stars">
@@ -816,8 +828,6 @@
                         </div>
                         <input type="hidden" id="rating" name="Rating" value="0" />
 
-
-
                         <form class="comments-form__form contact-form-validated product-details__form__form form-one wow fadeInUp" data-wow-duration='1500ms' data-wow-delay='500ms'>
                             @Html.AntiForgeryToken()
                             <input type="hidden" id="tourId" value="@Model.Tour.Id" />
@@ -825,15 +835,15 @@
                             <div class="form-one__group">
                                 <div class="form-one__control">
                                     <label for="name">Your Name*</label>
-                                    <input type="text" name="name" id="name" placeholder="Your Name">
+                                    <input type="text" name="name" id="name" placeholder="Your Name" required>
                                 </div>
                                 <div class="form-one__control">
                                     <label for="email">Your Email*</label>
-                                    <input type="email" name="email" id="email" placeholder="Your Email">
+                                    <input type="email" name="email" id="email" placeholder="Your Email" required>
                                 </div>
                                 <div class="form-one__control form-one__control--full">
-                                    <label for="message">Message*</label>
-                                    <textarea name="message" id="message" placeholder="Write Message . . "></textarea>
+                                    <label for="message">Message* (minimum 10 words)</label>
+                                    <textarea name="message" id="message" placeholder="Write Message..." required></textarea>
                                 </div>
 
                                 <div class="form-one__control form-one__control--full">
@@ -842,7 +852,7 @@
                             </div>
                         </form>
                         <div class="result"></div>
-                    </div><!-- / -->
+                    </div>
                 </div><!-- /.tour-listing-details__content -->
 
             </div><!-- /.col-lg-8 -->
@@ -916,52 +926,102 @@
             window.open(whatsappLink, '_blank');
         }
     </script>
-    <script>
-        $(document).ready(function () {
-            // STAR CLICK
-            $('.star').click(function () {
-                let rating = $(this).data('value');
-                $('#rating').val(rating);
+   <script>
+    $(document).ready(function () {
+        // STAR CLICK
+        $('.star').click(function () {
+            let rating = $(this).data('value');
+            $('#rating').val(rating);
 
-                $('.star').each(function () {
-                    let starValue = $(this).data('value');
-                    $(this).html(starValue <= rating ? '&#9733;' : '&#9734;');
-                });
-            });
-
-            // FORM SUBMIT
-            $('.gotur-btn').on('click', function (e) {
-                e.preventDefault();
-
-                var data = {
-                    Name: $('#name').val(),
-                    Email: $('#email').val(),
-                    Message: $('#message').val(),
-                    TourId: $('#tourId').val(),
-                    Rating: $('#rating').val()
-                };
-
-                $.ajax({
-                    url: window.location.pathname + '?handler=AddReview',
-                    type: 'POST',
-                    data: data,
-                    headers: {
-                        "RequestVerificationToken": $('input[name="__RequestVerificationToken"]').val()
-                    },
-                    success: function (response) {
-                        $('.result').html('<p class="text-success">Review submitted successfully!</p>');
-                        $('.comments-form__form')[0].reset();
-                        $('#rating').val(0);
-                        $('.star').html('&#9734;'); // Reset stars
-                    },
-                    error: function () {
-                        $('.result').html('<p class="text-danger">Something went wrong.</p>');
-                    }
-                });
+            $('.star').each(function () {
+                let starValue = $(this).data('value');
+                $(this).html(starValue <= rating ? '&#9733;' : '&#9734;');
             });
         });
-    </script>
 
+        // FORM SUBMIT
+        $('.gotur-btn').on('click', function (e) {
+            e.preventDefault();
+            
+            // Reset previous error messages
+            $('.error-message').remove();
+            $('.form-one__control').removeClass('has-error');
+            
+            // Validate form
+            let isValid = true;
+            
+            // Name validation
+            if ($('#name').val().trim() === '') {
+                $('#name').parent().addClass('has-error');
+                $('#name').parent().append('<span class="error-message text-danger">Name is required</span>');
+                isValid = false;
+            }
+            
+            // Email validation
+            const emailRegex = /^[^\s@@]+@@[^\s@@]+\.[^\s@@]+$/;
+            if ($('#email').val().trim() === '') {
+                $('#email').parent().addClass('has-error');
+                $('#email').parent().append('<span class="error-message text-danger">Email is required</span>');
+                isValid = false;
+            } else if (!emailRegex.test($('#email').val())) {
+                $('#email').parent().addClass('has-error');
+                $('#email').parent().append('<span class="error-message text-danger">Please enter a valid email</span>');
+                isValid = false;
+            }
+            
+            // Message validation (minimum 10 words)
+            const message = $('#message').val().trim();
+            if (message === '') {
+                $('#message').parent().addClass('has-error');
+                $('#message').parent().append('<span class="error-message text-danger">Message is required</span>');
+                isValid = false;
+            } else if (message.split(/\s+/).length < 10) {
+                $('#message').parent().addClass('has-error');
+                $('#message').parent().append('<span class="error-message text-danger">Message must be at least 10 words</span>');
+                isValid = false;
+            }
+            
+            // Rating validation
+            if ($('#rating').val() === '0') {
+                $('.stars').parent().addClass('has-error');
+                $('.stars').parent().append('<span class="error-message text-danger">Please select a rating</span>');
+                isValid = false;
+            }
+            
+            if (!isValid) {
+                return;
+            }
+
+            var data = {
+                Name: $('#name').val(),
+                Email: $('#email').val(),
+                Message: $('#message').val(),
+                TourId: $('#tourId').val(),
+                Rating: $('#rating').val()
+            };
+
+            $.ajax({
+                url: window.location.pathname + '?handler=AddReview',
+                type: 'POST',
+                data: data,
+                headers: {
+                    "RequestVerificationToken": $('input[name="__RequestVerificationToken"]').val()
+                },
+                success: function (response) {
+                    $('.result').html('<p class="text-success">Review submitted successfully!</p>');
+                    $('.comments-form__form')[0].reset();
+                    $('#rating').val(0);
+                    $('.star').html('&#9734;'); // Reset stars
+                    window.location.reload();
+                },
+                error: function (xhr, status, error) {
+                    console.error("Error:", error);
+                    $('.result').html('<p class="text-danger">Something went wrong. Please try again.</p>');
+                }
+            });
+        });
+    });
+</script>
 
 
 }

@@ -12,13 +12,17 @@ namespace TheMilesTours.Pages.Tour
     {
         private readonly ITourService _tourService;
         private readonly IReviewsService _reviewsService;
-        public DetailModel(ITourService tourService, IReviewsService reviewsService)
+        private readonly IGalleryService _galleryService;
+        public DetailModel(ITourService tourService, IReviewsService reviewsService, IGalleryService galleryService)
         {
             _tourService = tourService;
             _reviewsService = reviewsService;
+           _galleryService = galleryService;
         }
         public DomainLayer.TheMilesTours.Entities.Tour Tour { get; set; }
         public IEnumerable<DomainLayer.TheMilesTours.Entities.Tour> TourList { get; set; }
+        public IEnumerable<DomainLayer.TheMilesTours.Entities.Gallery> Gallery { get; set; }
+
         [BindProperty]
         public DomainLayer.TheMilesTours.Entities.Reviews Reviews { get; set; }
 
@@ -26,6 +30,8 @@ namespace TheMilesTours.Pages.Tour
         {
             Tour = await _tourService.GetTourByIdAsync(id);
             TourList = await _tourService.GetAllToursAsync();
+            Gallery = await _galleryService.GetAllGalleryByTourId(id);
+
         }
         public async Task<JsonResult> OnPostAddReview()
         {

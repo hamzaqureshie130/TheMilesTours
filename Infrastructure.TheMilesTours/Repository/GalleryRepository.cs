@@ -1,6 +1,7 @@
 ﻿using DomainLayer.TheMilesTours.Entities;
 using Infrastructure.TheMilesTours.IRepository;
 using Infrastructure.TheMilesTours.Persistence;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -46,8 +47,12 @@ namespace Infrastructure.TheMilesTours.Repository
             return false;
         }
 
-      
+        public async Task<IEnumerable<Gallery>> GetAllGalleryByTourId(Guid tourId)
+        {
+            return await _context.Gallery
+                                 .Where(x => x.TourId == tourId)
+                                 .ToListAsync();
+        }
 
-      
     }
 }

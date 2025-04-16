@@ -26,7 +26,7 @@ namespace Infrastructure.TheMilesTours.Repository
 
         public async Task<IEnumerable<Reviews>> GetAll()
         {
-            return await _context.Reviews.ToListAsync();
+            return await _context.Reviews.Include(x=>x.Tour).ToListAsync();
         }
     }
 }

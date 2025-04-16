@@ -37,7 +37,7 @@ namespace Infrastructure.TheMilesTours.Repository
 
         public async Task<IEnumerable<Destination>> GetAll()
         {
-            return await _context.Destination.Include(x=>x.DestinationGallery).ToListAsync();
+            return await _context.Destination.ToListAsync();
         }
 
         public Task<Destination> GetById(Guid id)

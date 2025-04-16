@@ -12,6 +12,7 @@ namespace ApplicationLayer.TheMilesTours.IService
         Task<bool> AddGallery(Gallery gallery);
         Task<bool> DeleteGallery(Guid galleryId);
         Task<bool> EditGallery(Gallery gallery);
+        Task<IEnumerable<Gallery>> GetAllGalleryByTourId(Guid tourId);
        
     }
 }

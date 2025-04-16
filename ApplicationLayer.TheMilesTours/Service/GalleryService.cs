@@ -32,6 +32,9 @@ namespace ApplicationLayer.TheMilesTours.Service
             return await _galleryRepository.EditGallery(gallery);
         }
 
-       
+        public async Task<IEnumerable<Gallery>> GetAllGalleryByTourId(Guid tourId)
+        {
+            return await _galleryRepository.GetAllGalleryByTourId(tourId);
+        }
     }
 }

@@ -15,13 +15,18 @@
 		</div>
 		<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
 			<input class="mdl-textfield__input" asp-for="PricePerPerson" type="number">
-			<label class="mdl-textfield__label">Desciption</label>
+			<label class="mdl-textfield__label">Price Per Person</label>
 			<span asp-validation-for="PricePerPerson" class="text-danger"></span>
 		</div>
 		<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
 			<input class="mdl-textfield__input" asp-for="Location" type="text">
 			<label class="mdl-textfield__label">Location</label>
 			<span asp-validation-for="Location" class="text-danger"></span>
+		</div>
+		<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
+			<input class="mdl-textfield__input" asp-for="ActivityType" type="text">
+			<label class="mdl-textfield__label">Activity Type</label>
+			<span asp-validation-for="ActivityType" class="text-danger"></span>
 		</div>
 		<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
 			<input class="mdl-textfield__input" asp-for="StayDuration" type="text">
