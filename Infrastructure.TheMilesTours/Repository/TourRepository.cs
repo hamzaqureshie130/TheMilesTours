@@ -37,12 +37,12 @@ namespace Infrastructure.TheMilesTours.Repository
 
         public async Task<IEnumerable<Tour>> GetAllToursAsync()
         {
-           return await _context.Tour.Include(x=>x.GalleryImages).Include(x => x.TourPlan).ToListAsync();
+           return await _context.Tour.Include(x=>x.GalleryImages).Include(x => x.TourPlan).Include(x=>x.Reviews).ToListAsync();
         }
 
         public Task<Tour> GetTourByIdAsync(Guid id)
         {
-            var tour = _context.Tour.Include(x => x.GalleryImages).Include(x => x.TourPlan).Include(x=>x.TourPackage).FirstOrDefaultAsync(x => x.Id == id);
+            var tour = _context.Tour.Include(x => x.GalleryImages).Include(x => x.TourPlan).Include(x=>x.TourPackage).Include(x=>x.Reviews).FirstOrDefaultAsync(x => x.Id == id);
             if (tour != null)
             {
                 return tour;

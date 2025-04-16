@@ -31,14 +31,14 @@ namespace TheMilesTours.Areas.Admin.Pages.Tour
             }
             if(Tour.CoverImageFile != null)
             {
-                var uploadResult = await _fileUploader.UploadFile(Tour.CoverImageFile);
-                if (uploadResult.status)
+                var uploadResult = FileUploader.ConvertFileToBase64WithMimeType(Tour.CoverImageFile);
+                if (!string.IsNullOrEmpty(uploadResult))
                 {
-                    Tour.CoverImageUrl = uploadResult.url;
+                    Tour.CoverImageUrl = uploadResult;
                 }
                 else
                 {
-                    ModelState.AddModelError("", uploadResult.message);
+                    ModelState.AddModelError("", uploadResult);
                     return Page();
                 }
             }
@@ -52,13 +52,13 @@ namespace TheMilesTours.Areas.Admin.Pages.Tour
                 foreach (var galleryImage in Tour.GalleryFiles)
                 {
 
-                    var newImageResult = await _fileUploader.UploadFile(galleryImage);
-                    if (newImageResult.status)
+                    var newImageResult =  FileUploader.ConvertFileToBase64WithMimeType(galleryImage);
+                    if (!string.IsNullOrEmpty(newImageResult)   )
                     {
                         var galleryObject = new Gallery();
                         {
                             galleryObject.Id = Guid.NewGuid();
-                            galleryObject.ImageUrl = newImageResult.url;
+                            galleryObject.ImageUrl = newImageResult;
                             galleryObject.TourId = Tour.Id;
                         }
 

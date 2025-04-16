@@ -4,8 +4,31 @@
   
 }
 <style>
- 
-   
+
+    /* Filled stars - yellow */
+    .star-filled {
+        color: #ffc107 !important;
+    }
+
+    /* Empty stars - gray/white */
+    .star-empty {
+        color: #e5e5e5 !important;
+    }
+
+
+    .custom-rating-stars .stars {
+        display: flex;
+        gap: 5px;
+        font-size: 24px;
+        cursor: pointer;
+        user-select: none;
+        color: gold;
+    }
+
+    .custom-rating-stars .star {
+        transition: color 0.2s;
+    }
+
 
     /* Payment Methods */
     .payment-methods {
@@ -355,7 +378,7 @@
         {
             <div class="item">
                 <div class="tour-one__item">
-                    <img src="/@image.ImageUrl" alt="tour image">
+                    <img src="@image.ImageUrl" alt="tour image">
                 </div><!-- /.tour-one__item -->
             </div>
 
@@ -372,14 +395,21 @@
                 <div class="tour-listing-details__destination__left">
                     <h4 class="tour-listing-details__destination__title">@Model.Tour.Title</h4><!-- /.tour-listing-details__destination__title -->
                     <div class="tour-listing-details__destination__revue">
+                        @{
+                            double avgRating = Model.Tour.Reviews.Any() ? Model.Tour.Reviews.Average(r => r.Rating) : 0;
+                            int fullStars = (int)Math.Floor(avgRating);
+                        }
+
                         <div class="tour-listing-details__destination__ratings-box">
-                            <span>(17 Review)</span>
-                            <i class="icon-star"></i>
-                            <i class="icon-star"></i>
-                            <i class="icon-star"></i>
-                            <i class="icon-star"></i>
-                            <i class="icon-star"></i>
+                            <span>(@Model.Tour.Reviews.Count() Review)</span>
+
+                            @for (int i = 1; i <= 5; i++)
+                            {
+                                var starClass = i <= fullStars ? "star-filled" : "star-empty";
+                                <i class="icon-star @starClass"></i>
+                            }
                         </div>
+
                         <div class="tour-listing-details__destination__posted">
                             <i class="icon-pin1"></i>
                             <p class="tour-listing-details__destination__posted-text">@Model.Tour.Location</p>
@@ -664,7 +694,7 @@
                                         <div class="item">
                                             <div class="listing-card-four wow fadeInUp" data-wow-duration='1500ms' data-wow-delay='100ms'>
                                                 <div class="listing-card-four__image">
-                                                    <img src="/@tour.CoverImageUrl" alt="All Inclusive Ultimate Circle Island Day with Lunch">
+                                                    <img src="@tour.CoverImageUrl" alt="All Inclusive Ultimate Circle Island Day with Lunch">
                                                     <div class="listing-card-four__btn-group">
                                                         <div class="listing-card-four__featured">Featured</div><!-- /.listing-card-four__featured -->
                                                     </div><!-- /.listing-card-four__btn-group -->
@@ -742,42 +772,56 @@
                     </div><!-- /.tour-listing-details__content__item -->
                    
                     <div class="tour-listing-details__content__item tour-listing-details__reviews">
-                        <h4 class="tour-listing-details__title wow fadeInUp" data-wow-duration='1500ms' data-wow-delay='500ms'>1 Reviews</h4><!-- /.tour-listing-details__title -->
-                        <ul class="list-unstyled product-details__comment__list">
-                            <li class="product-details__comment__card wow fadeInUp" data-wow-duration='1500ms' data-wow-delay='500ms'>
-                                <div class="product-details__comment__card__image">
-                                    <img src="/assets/site/assets/images/blog/blog-comment-1-1.png" alt="gotur">
-                                </div>
-                                <div class="product-details__comment__card__content">
-                                    <div class="product-details__comment__card__top">
-                                        <div class="product-details__comment__card__info">
-                                            <h3 class="product-details__comment__card__title">Leslie Alexander</h3>
-                                            <p class="product-details__comment__card__date">February 10, 2024 at 2:37 pm</p>
-                                        </div>
-                                        <div class="product-details__comment__card__star">
-                                            <span class="fa fa-star"></span>
-                                            <span class="fa fa-star"></span>
-                                            <span class="fa fa-star"></span>
-                                            <span class="fa fa-star"></span>
-                                            <span class="fa fa-star"></span>
-                                        </div>
+                        <h4 class="tour-listing-details__title wow fadeInUp" data-wow-duration='1500ms' data-wow-delay='500ms'>@Model.Tour.Reviews.Count() Reviews</h4><!-- /.tour-listing-details__title -->
+                        @foreach (var item in Model.Tour.Reviews)
+                        {
+                            <ul class="list-unstyled product-details__comment__list">
+                                <li class="product-details__comment__card wow fadeInUp" data-wow-duration='1500ms' data-wow-delay='500ms'>
+                                    <div class="product-details__comment__card__image">
+                                        <img src="/assets/site/siteImage/theMileTourLogo.png" height="96px" width="96px" alt="gotur">
                                     </div>
-                                    <p class="product-details__comment__card__text">Neque porro est qui dolorem ipsum quia quaed inventor veritatis et quasi architecto var sed efficitur turpis gilla sed sit amet finibus eros. Lorem Ipsum is simply dummy</p>
-                                </div>
-                            </li>
-                        </ul><!-- /.list-unstyled comments-one__list -->
+                                    <div class="product-details__comment__card__content">
+                                        <div class="product-details__comment__card__top">
+                                            <div class="product-details__comment__card__info">
+                                                <h3 class="product-details__comment__card__title">@item.Name</h3>
+                                                <p class="product-details__comment__card__date">@item.DateTime.ToLocalTime()</p>
+                                            </div>
+
+                                            <div class="product-details__comment__card__star">
+                                                @for (int i = 1; i <= 5; i++)
+                                                {
+                                                    var starClass = i <= item.Rating ? "star-filled" : "star-empty";
+                                                    <span class="fa fa-star @starClass"></span>
+                                                }
+                                            </div>
+                                        </div>
+                                        <p class="product-details__comment__card__text">@item.Message</p>
+                                    </div>
+                                </li>
+                            </ul>
+                        }
                     </div><!-- /.tour-listing-details__content__item -->
                     <div class="tour-listing-details__content__item tour-listing-details__add-reviews">
                         <h4 class="tour-listing-details__title wow fadeInUp" data-wow-duration='1500ms' data-wow-delay='500ms'>Add a Review</h4><!-- /.tour-listing-details__title -->
-                        <div class="product-details__form-ratings wow fadeInUp" data-wow-duration='1500ms' data-wow-delay='500ms'>
-                            <p class="product-details__form-ratings__label">Your Rating*</p>
-                            <span class="far fa-star"></span>
-                            <span class="far fa-star"></span>
-                            <span class="far fa-star"></span>
-                            <span class="far fa-star"></span>
-                            <span class="far fa-star"></span>
-                        </div><!-- review-ratings -->
+                
+                        <div class="custom-rating-stars">
+                            <p>Your Rating*</p>
+                            <div class="stars">
+                                <span class="star" data-value="1">&#9734;</span>
+                                <span class="star" data-value="2">&#9734;</span>
+                                <span class="star" data-value="3">&#9734;</span>
+                                <span class="star" data-value="4">&#9734;</span>
+                                <span class="star" data-value="5">&#9734;</span>
+                            </div>
+                        </div>
+                        <input type="hidden" id="rating" name="Rating" value="0" />
+
+
+
                         <form class="comments-form__form contact-form-validated product-details__form__form form-one wow fadeInUp" data-wow-duration='1500ms' data-wow-delay='500ms'>
+                            @Html.AntiForgeryToken()
+                            <input type="hidden" id="tourId" value="@Model.Tour.Id" />
+
                             <div class="form-one__group">
                                 <div class="form-one__control">
                                     <label for="name">Your Name*</label>
@@ -807,7 +851,8 @@
                     <div class="tour-listing-details__sidebar__item tour-listing-details__sidebar__item-form wow fadeInUp" data-wow-delay="0.4s" data-wow-duration="1500ms">
                         <h4 class="tour-listing-details__sidebar__title">Book This Tour</h4>
                         <div class="sidebar-two__form">
-                            <form id="bookingForm" class="sidebar-two__form__inner" onsubmit="return false;">
+                            <form id="bookingForm" class="sidebar-two__form__inner">
+                              
                                 <div class="sidebar-two__form__control">
                                     <label for="name">Your Name</label>
                                     <input id="name" class="form-control" placeholder="Enter your name" />
@@ -871,4 +916,52 @@
             window.open(whatsappLink, '_blank');
         }
     </script>
+    <script>
+        $(document).ready(function () {
+            // STAR CLICK
+            $('.star').click(function () {
+                let rating = $(this).data('value');
+                $('#rating').val(rating);
+
+                $('.star').each(function () {
+                    let starValue = $(this).data('value');
+                    $(this).html(starValue <= rating ? '&#9733;' : '&#9734;');
+                });
+            });
+
+            // FORM SUBMIT
+            $('.gotur-btn').on('click', function (e) {
+                e.preventDefault();
+
+                var data = {
+                    Name: $('#name').val(),
+                    Email: $('#email').val(),
+                    Message: $('#message').val(),
+                    TourId: $('#tourId').val(),
+                    Rating: $('#rating').val()
+                };
+
+                $.ajax({
+                    url: window.location.pathname + '?handler=AddReview',
+                    type: 'POST',
+                    data: data,
+                    headers: {
+                        "RequestVerificationToken": $('input[name="__RequestVerificationToken"]').val()
+                    },
+                    success: function (response) {
+                        $('.result').html('<p class="text-success">Review submitted successfully!</p>');
+                        $('.comments-form__form')[0].reset();
+                        $('#rating').val(0);
+                        $('.star').html('&#9734;'); // Reset stars
+                    },
+                    error: function () {
+                        $('.result').html('<p class="text-danger">Something went wrong.</p>');
+                    }
+                });
+            });
+        });
+    </script>
+
+
+
 }

@@ -22,5 +22,8 @@ namespace Infrastructure.TheMilesTours.Persistence
         public DbSet<TourPlan> TourPlan { get; set; }
         public DbSet<Destination> Destination { get; set; }
         public DbSet<DestinationGallery> DestinationGallery { get; set; }
+        public DbSet<Car> Car { get; set; }
+        public DbSet<CarGallery> CarGallery { get; set; }
+        public DbSet<Reviews> Reviews { get; set; }
     }
 }

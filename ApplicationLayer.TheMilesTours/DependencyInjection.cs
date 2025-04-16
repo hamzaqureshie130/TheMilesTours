@@ -21,10 +21,9 @@ namespace ApplicationLayer.TheMilesTours
             services.AddScoped<IGalleryService, GalleryService>();
             services.AddScoped<IDestinationGalleryService, DestinationGalleryService>();
             services.AddScoped<IDestinationService, DestinationService>();
-
-
-
-           
+            services.AddScoped<ICarService, CarService>();
+            services.AddScoped<ICarGalleryService, CarGalleryService>();
+            services.AddScoped<IReviewsService, ReviewService>();
             return services;
             //dsd
         }

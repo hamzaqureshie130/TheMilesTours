@@ -665,8 +665,8 @@ h6 {
 
 .container-fluid,
 .container {
-  padding-left: 15px;
-  padding-right: 15px;
+  padding-left: 0px;
+  padding-right: 0px;
 }
 
 @media (min-width: 1200px) {
@@ -3346,7 +3346,7 @@ h6 {
   }
   .main-header--two .main-header__logo::before {
     content: "";
-    background: var(--gotur-white, #fff);
+    background: black;
     width: 9999999px;
     height: 100%;
     position: absolute;
@@ -3355,7 +3355,7 @@ h6 {
   }
 }
 .main-header--two .container-fluid {
-  max-width: 1780px;
+  max-width: 1906px;
   margin-left: auto;
   margin-right: auto;
 }

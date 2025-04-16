@@ -4,6 +4,7 @@ using Infrastructure.TheMilesTours.Persistence;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Infrastructure.TheMilesTours.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250415105508_addCarTable")]
+    partial class addCarTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -147,43 +150,6 @@ namespace Infrastructure.TheMilesTours.Migrations
                     b.HasIndex("TourId");
 
                     b.ToTable("Gallery");
-                });
-
-            modelBuilder.Entity("DomainLayer.TheMilesTours.Entities.Reviews", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<DateTime>("CreatedDateTime")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime>("DateTime")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Email")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Message")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("Rating")
-                        .HasColumnType("int");
-
-                    b.Property<Guid>("TourId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<DateTime>("UpdatedDateTime")
-                        .HasColumnType("datetime2");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("TourId");
-
-                    b.ToTable("Reviews");
                 });
 
             modelBuilder.Entity("DomainLayer.TheMilesTours.Entities.Tour", b =>
@@ -338,17 +304,6 @@ namespace Infrastructure.TheMilesTours.Migrations
                     b.Navigation("Tour");
                 });
 
-            modelBuilder.Entity("DomainLayer.TheMilesTours.Entities.Reviews", b =>
-                {
-                    b.HasOne("DomainLayer.TheMilesTours.Entities.Tour", "Tour")
-                        .WithMany("Reviews")
-                        .HasForeignKey("TourId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Tour");
-                });
-
             modelBuilder.Entity("DomainLayer.TheMilesTours.Entities.TourPackage", b =>
                 {
                     b.HasOne("DomainLayer.TheMilesTours.Entities.Tour", "Tour")
@@ -384,8 +339,6 @@ namespace Infrastructure.TheMilesTours.Migrations
             modelBuilder.Entity("DomainLayer.TheMilesTours.Entities.Tour", b =>
                 {
                     b.Navigation("GalleryImages");
-
-                    b.Navigation("Reviews");
 
                     b.Navigation("TourPackage");
 

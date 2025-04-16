@@ -1,0 +1,104 @@
+﻿@using DomainLayer.TheMilesTours.Entities
+@model Car
+
+<div class="card-body row">
+
+	<div class="col-lg-12 p-t-20">
+
+		<!-- Title Input -->
+		<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
+			<input class="mdl-textfield__input" asp-for="Name" type="text">
+			<label class="mdl-textfield__label">Name</label>
+			<span asp-validation-for="Name" class="text-danger"></span>
+		</div>
+		<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
+			<input class="mdl-textfield__input" asp-for="Colour" type="text">
+			<label class="mdl-textfield__label">Color</label>
+			<span asp-validation-for="Colour" class="text-danger"></span>
+		</div>
+		<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
+			<input class="mdl-textfield__input" asp-for="RentPerDay" type="text">
+			<label class="mdl-textfield__label">Rent Per Day</label>
+			<span asp-validation-for="RentPerDay" class="text-danger"></span>
+		</div>
+		<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
+
+			<textarea class="mdl-textfield__input editor1" id="editor" asp-for="GeneralInformation" type="text"></textarea>
+			<label class="mdl-textfield__label">General Information</label>
+			<span asp-validation-for="GeneralInformation" class="text-danger"></span>
+		</div>
+
+		<!-- Transmission Dropdown -->
+		<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
+			<select class="mdl-textfield__input" asp-for="Transmission">
+				<option value="">Select Transmission</option>
+				<option value="Automatic">Automatic</option>
+				<option value="Manual">Manual</option>
+			</select>
+			<label class="mdl-textfield__label">Transmission</label>
+			<span asp-validation-for="Transmission" class="text-danger"></span>
+		</div>
+
+		<!-- AirCondition Dropdown -->
+		<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
+			<select class="mdl-textfield__input" asp-for="AirCondtion">
+				<option value="">Select Air Condition Option</option>
+				<option value="Yes">Yes</option>
+				<option value="No">No</option>
+			</select>
+			<label class="mdl-textfield__label">Air Condition</label>
+			<span asp-validation-for="AirCondtion" class="text-danger"></span>
+		</div>
+
+		<!-- Driver Dropdown -->
+		<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
+			<select class="mdl-textfield__input" asp-for="Driver">
+				<option value="">Select Driver Option</option>
+				<option value="With Driver">With Driver</option>
+				<option value="Without Driver">Without Driver</option>
+			</select>
+			<label class="mdl-textfield__label">Driver</label>
+			<span asp-validation-for="Driver" class="text-danger"></span>
+		</div>
+
+		<!-- Fuel Dropdown -->
+		<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
+			<select class="mdl-textfield__input" asp-for="Fuel">
+				<option value="">Select Fuel Type</option>
+				<option value="Petrol">Petrol</option>
+				<option value="Diesel">Diesel</option>
+				<option value="Hybrid">Hybrid</option>
+				<option value="Electric">Electric</option>
+			</select>
+			<label class="mdl-textfield__label">Fuel</label>
+			<span asp-validation-for="Fuel" class="text-danger"></span>
+		</div>
+
+		<!-- Upload Cover Image -->
+		<div>
+			<label>Upload Cover Image</label>
+			<input class="mdl-textfield__input" asp-for="CoverImageFile" type="file" accept=".png, .jpg, .jpeg" required>
+			<span asp-validation-for="CoverImageFile" class="text-danger"></span>
+		</div>
+
+		<!-- Upload Gallery Images -->
+		<div>
+			<label>Upload Car Gallery Images</label>
+			<input class="mdl-textfield__input" asp-for="GalleryFiles" type="file" multiple accept=".png, .jpg, .jpeg">
+			<span asp-validation-for="GalleryFiles" class="text-danger"></span>
+		</div>
+
+	</div>
+
+	<!-- Submit Buttons -->
+	<div class="col-lg-12 p-t-20 text-center">
+		<button type="submit"
+				class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect m-b-10 m-r-20 btn-circle btn-primary">
+			Next
+		</button>
+		<button type="button" onclick="window.history.back()"
+				class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect m-b-10 btn-circle btn-danger">
+			Cancel
+		</button>
+	</div>
+</div>

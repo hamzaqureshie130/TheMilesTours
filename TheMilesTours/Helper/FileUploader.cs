@@ -72,5 +72,21 @@
                 return (false, $"Error uploading file: {ex.Message}", "");
             }
         }
+        public static string ConvertFileToBase64WithMimeType(IFormFile file)
+        {
+            using (var memoryStream = new MemoryStream())
+            {
+                // Copy file data to memory stream
+                file.CopyTo(memoryStream);
+                byte[] fileBytes = memoryStream.ToArray();
+
+                // Determine MIME type
+                string mimeType = file.ContentType; // Get MIME type from IFormFile
+
+                // Combine MIME type and base64 string
+                string base64String = Convert.ToBase64String(fileBytes);
+                return $"data:{mimeType};base64,{base64String}";
+            }
+        }
     }
 }

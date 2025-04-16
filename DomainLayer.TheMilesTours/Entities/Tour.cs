@@ -26,8 +26,9 @@ namespace DomainLayer.TheMilesTours.Entities
         // Relationships
         public ICollection<Gallery> GalleryImages { get; set; } = new List<Gallery>();
         public ICollection<TourPlan> TourPlan { get; set; } = new List<TourPlan>();
-      
-      
+
+        public ICollection<Reviews> Reviews { get; set; } = new List<Reviews>();
+
         public TourPackage TourPackage { get; set; }
         // NotMapped
         [NotMapped]

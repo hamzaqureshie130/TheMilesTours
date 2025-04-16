@@ -1,5 +1,5 @@
 ﻿@page
-@model TheMilesTours.Areas.Admin.Pages.Destination.IndexModel
+@model TheMilesTours.Areas.Admin.Pages.Car.IndexModel
 @{
 }
 <div class="page-content-wrapper">
@@ -7,7 +7,7 @@
 		<div class="page-bar">
 			<div class="page-title-breadcrumb">
 				<div class=" pull-left">
-					<div class="page-title">Destination List</div>
+					<div class="page-title">Car List</div>
 				</div>
 				<ol class="breadcrumb page-breadcrumb pull-right">
 					<li>
@@ -17,7 +17,7 @@
 					@* 	<li>
 						<a class="parent-item" href="">Professors</a>&nbsp;<i class="fa fa-angle-right"></i>
 					</li> *@
-					<li class="active">Destination List</li>
+					<li class="active">Car List</li>
 				</ol>
 			</div>
 		</div>
@@ -62,7 +62,7 @@
 											<div class="row">
 												<div class="col-md-6 col-sm-6 col-6">
 													<div class="btn-group">
-														<a href="/admin/Destination/Add" id="addRow"
+														<a href="/admin/Car/Add" id="addRow"
 														   class="btn btn-primary">
 															Add New <i class="fa fa-plus"></i>
 														</a>
@@ -74,19 +74,19 @@
 												<thead>
 													<tr>
 														<th></th>
-														<th> Title </th>
+														<th> Name </th>
 														<th> Action </th>
 													</tr>
 												</thead>
 												<tbody>
-													@foreach (var destination in Model.Destinations)
+													@foreach (var destination in Model.Cars)
 													{
 														<tr class="odd gradeX">
 															<td class="patient-img">
-																<img src="@destination.ComverImageUrl" alt="">
+																<img src="@destination.Base64Image" alt="">
 															</td>
-															<td>@destination.Title</td>
-														
+															<td>@destination.Name</td>
+
 
 															<td>
 																<a asp-area="CRM" asp-controller="car" asp-action="Edit" asp-route-carId="@destination.Id"
@@ -97,7 +97,7 @@
 																<form id="deleteForm-@destination.Id" asp-area="CRM" asp-action="DeleteCategory" asp-controller="Category" class="mt-1" asp-route-categoryId="@destination.Id" method="post" style=" display: inline-block; ">
 																	<button type="button" onclick="confirmDelete('@destination.Id')" class="tblDelBtn"><i class="fa fa-trash-o"></i></button>
 																</form>
-																
+
 															</td>
 														</tr>
 

@@ -41,6 +41,9 @@ namespace Infrastructure.TheMilesTours
             services.AddScoped<IGalleryRepository, GalleryRepository>();
             services.AddScoped<IDestinationGalleryRepository, DestinationGalleryRepository>();
             services.AddScoped<IDestinationRepository, DestinationRepository>();
+            services.AddScoped<ICarRepository, CarRepository>();
+            services.AddScoped<ICarGalleryRepository, CarGalleryRepository>();
+            services.AddScoped<IReviewRepository, ReviewRepository>();
 
 
 
