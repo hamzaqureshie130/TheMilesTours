@@ -27,6 +27,10 @@
     <ProjectReference Include="..\Infrastructure.TheMilesTours\Infrastructure.TheMilesTours.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="wwwroot\assets\documents\" />
+  </ItemGroup>
+
 
 
  
