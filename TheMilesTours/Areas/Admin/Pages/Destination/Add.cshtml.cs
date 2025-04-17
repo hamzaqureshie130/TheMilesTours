@@ -2,6 +2,7 @@ using ApplicationLayer.TheMilesTours.IService;
 using ApplicationLayer.TheMilesTours.Service;
 using DomainLayer.TheMilesTours.Entities;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using TheMilesTours.Helper;
 
@@ -31,14 +32,14 @@ namespace TheMilesTours.Areas.Admin.Pages.Destination
             }
             if (Destination.CoverImageFile != null)
             {
-                var uploadResult = FileUploader.ConvertFileToBase64WithMimeType(Destination.CoverImageFile);
-                if (!string.IsNullOrEmpty(uploadResult))
+                var result = await _fileUploader.UploadFile(Destination.CoverImageFile);
+                if (result.status)
                 {
-                    Destination.ComverImageUrl = uploadResult;
+                    Destination.ComverImageUrl = result.url;
                 }
                 else
                 {
-                    ModelState.AddModelError("", uploadResult);
+                    ModelState.AddModelError("", result.url);
                     return Page();
                 }
             }
@@ -52,13 +53,13 @@ namespace TheMilesTours.Areas.Admin.Pages.Destination
                 foreach (var galleryImage in Destination.GalleryFiles)
                 {
 
-                    var newImageResult = FileUploader.ConvertFileToBase64WithMimeType(galleryImage);
-                    if (!string.IsNullOrEmpty(newImageResult))
+                    var newImageResult = await _fileUploader.UploadFile(galleryImage);
+                    if (newImageResult.status)
                     {
                         var galleryObject = new DestinationGallery();
                         {
                             galleryObject.Id = Guid.NewGuid();
-                            galleryObject.ImageUrl = newImageResult;
+                            galleryObject.ImageUrl = newImageResult.url;
                             galleryObject.DestinationId = Destination.Id;
                         }
 

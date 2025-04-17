@@ -9,11 +9,13 @@ namespace TheMilesTours.Areas.Admin.Pages.Car
     {
         private readonly ICarService _carService;
         private readonly ICarGalleryService _carGalleryService;
+        private readonly FileUploader _fileUploader;
 
-        public AddModel(ICarService carService, ICarGalleryService carGalleryService)
+        public AddModel(ICarService carService, ICarGalleryService carGalleryService, FileUploader fileUploader)
         {
             _carService = carService;
             _carGalleryService = carGalleryService;
+            _fileUploader = fileUploader;
         }
         [BindProperty]
         public DomainLayer.TheMilesTours.Entities.Car Car { get; set; } = new();
@@ -28,14 +30,14 @@ namespace TheMilesTours.Areas.Admin.Pages.Car
             }
             if (Car.CoverImageFile != null)
             {
-                var uploadResult = FileUploader.ConvertFileToBase64WithMimeType(Car.CoverImageFile);
-                if (!string.IsNullOrEmpty(uploadResult))
+                var uploadResult = await _fileUploader.UploadFile(Car.CoverImageFile);
+                if (uploadResult.status)
                 {
-                    Car.Base64Image = uploadResult;
+                    Car.Base64Image = uploadResult.url ;
                 }
                 else
                 {
-                    ModelState.AddModelError("", uploadResult);
+                    ModelState.AddModelError("", uploadResult.url);
                     return Page();
                 }
             }
@@ -44,14 +46,14 @@ namespace TheMilesTours.Areas.Admin.Pages.Car
             {
                 foreach (var galleryImage in Car.GalleryFiles)
                 {
-                    var newImageResult = FileUploader.ConvertFileToBase64WithMimeType(galleryImage);
-                    if (!string.IsNullOrEmpty(newImageResult))
+                    var newImageResult = await _fileUploader.UploadFile(galleryImage);
+                    if (newImageResult.status)
                     {
                         var galleryObject = new DomainLayer.TheMilesTours.Entities.CarGallery
                         {
                             Id = Guid.NewGuid(),
                             CarId = Car.Id,
-                            ImageUrl = newImageResult
+                            ImageUrl = newImageResult.url
                         };
                         await _carGalleryService.AddGallery(galleryObject);
                     }

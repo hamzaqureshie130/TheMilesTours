@@ -256,7 +256,7 @@
                     <div class="item">
                         <div class="destinations-card wow fadeInUp" data-wow-duration='1500ms' data-wow-delay='100ms'>
                             <div class="destinations-card__thumb">
-                                <img src="@destination.ComverImageUrl" alt="destinations image">
+                                                <img src="/@destination.ComverImageUrl" alt="destinations image">
                                 <div class="destinations-card__group-card">
                                     @* <p class="destinations-card__group-card__text">5 Tour+</p>
                                 <p class="destinations-card__group-card__text">1 Hotel</p> *@
@@ -351,6 +351,10 @@
 
 <section class="tour-listing-page section-space" id="tours">
     <div class="container">
+        <div class="sec-title text-center">
+            <h6 class="sec-title__tagline bw-split-in-right">Popular Tour</h6><!-- /.sec-title__tagline -->
+            <h3 class="sec-title__title bw-split-in-left">Popular <span>Tour</span></h3><!-- /.sec-title__title -->
+        </div><!-- /.sec-title -->
         @*   <div class="listing-from wow fadeInUp" data-wow-duration='1500ms' data-wow-delay='400ms'>
             <form method="get" action="https://pixydrops.com/gotur-html/tour-listing-1.html">
                 <div class="row gutter-y-20 gutter-x-20">
@@ -458,7 +462,7 @@
                     <div class="col-lg-4 col-md-6">
                         <div class="listing-card-two wow fadeInUp" data-wow-duration='1500ms' data-wow-delay='100ms'>
                             <div class="listing-card-two__image">
-                                <img src="@tour.CoverImageUrl" loading="lazy" alt="All Inclusive Ultimate Circle Island Day with Lunch">
+                                <img src="/@tour.CoverImageUrl" loading="lazy" alt="All Inclusive Ultimate Circle Island Day with Lunch">
                                 <a href="/Tour/Detail?id=@tour.Id" class="listing-card-two__overlay"></a>
 
 
@@ -468,7 +472,7 @@
 
 
                                 </div><!-- /.listing-card-two__btn-group -->
-                               @*  <div class="listing-card-two__btns">
+                                <div class="listing-card-two__btns">
                                 @{
                                     var tourGalleryItems = string.Join(",", tour.GalleryImages.Select(g => $"{{\"src\": \"{g.ImageUrl}\"}}"));
                                 }
@@ -483,7 +487,7 @@
                                         <span class="icon-image"></span>
                                     </a>
                               
-                                </div> *@
+                                </div>
                             </div><!-- /.listing-card-two__image -->
                             <div class="listing-card-two__content">
                             @{
@@ -596,7 +600,7 @@
                         <div class="item">
                             <div class="listing-card-four listing-card-four--feature wow fadeInUp" data-wow-duration='1500ms' data-wow-delay='100ms'>
                                 <div class="listing-card-four__image">
-                                    <img src="@item.Base64Image" alt="All Inclusive Ultimate Circle Island Day with Lunch">
+                                <img src="/@item.Base64Image" alt="All Inclusive Ultimate Circle Island Day with Lunch">
                                     <div class="listing-card-four__btn-group">
 
                                     @* <div class="listing-card-four__discount">-30% Off</div><!-- /.listing-card-four__discount --> *@
